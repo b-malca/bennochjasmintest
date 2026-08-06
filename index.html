@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benn & Jasmin — 17 juli 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white: #FFFFFF;
+    --sky: #CFE7F3;
+    --sky-deep: #9FCFE6;
+    --ink: #14161A;
+    --ink-soft: #565C63;
+    --burgundy: #6E2A24;
+    --burgundy-deep: #4E1D19;
+    --line: rgba(20,22,26,0.14);
+    --line-soft: rgba(20,22,26,0.07);
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background: var(--white);
+    color: var(--ink);
+    font-family:'Inter', sans-serif;
+    font-weight:300;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{ font-family:'Space Grotesk', sans-serif; margin:0; }
+  a{ color: var(--burgundy); text-decoration-color: rgba(110,42,36,0.4); text-underline-offset:3px; }
+  a:hover{ color: var(--burgundy-deep); }
+  .container{ max-width: 720px; margin:0 auto; padding: 0 28px; }
+
+  /* ---------- Nav ---------- */
+  .brand{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:16px; letter-spacing:0.02em; }
+  .brand span{ color: var(--burgundy); }
+
+  /* ---------- Blue wrap ---------- */
+  .blue-wrap{
+    background: linear-gradient(180deg, var(--sky) 0%, var(--sky-deep) 100%);
+    min-height: 100vh;
+    display:flex;
+    flex-direction: column;
+  }
+  .blue-wrap > .container{
+    width:100%;
+    flex: 1;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .blue-wrap > footer{ width:100%; }
+
+  /* ---------- Hero (inside Hem panel) ---------- */
+  .hero{
+    padding: 90px 0 70px;
+    text-align:center;
+  }
+  .eyebrow{
+    font-family:'Space Grotesk', sans-serif; font-size:12px; font-weight:500;
+    letter-spacing:0.14em; text-transform:uppercase; color: var(--burgundy); margin:0 0 16px;
+  }
+  h1.headline{
+    font-weight:700;
+    font-size: clamp(42px, 9vw, 78px);
+    letter-spacing:-0.02em;
+    line-height:0.98;
+    text-transform:uppercase;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  h1.headline em{ font-style:normal; color: var(--burgundy); }
+  .hero-meta{
+    font-family:'Space Grotesk', sans-serif; font-size:14px; font-weight:500;
+    letter-spacing:0.08em; text-transform:uppercase; color: var(--ink);
+  }
+  .hero-meta .dot{ margin:0 10px; color: var(--burgundy); }
+  .handwritten-names{
+    width: min(94%, 680px);
+    height:auto;
+    display:block;
+    margin: 0 auto 22px;
+  }
+
+  /* ---------- Tabs ---------- */
+  .tabs{
+    display:flex; justify-content:center; flex-wrap:wrap;
+    gap:0; background: var(--white); border-bottom:1px solid var(--line);
+    position: sticky; top:0; z-index:10;
+  }
+  .tab-btn{
+    background:none; border:none; cursor:pointer;
+    font-family:'Space Grotesk', sans-serif; font-size:13px; font-weight:600;
+    letter-spacing:0.08em; text-transform:uppercase; color: var(--ink-soft);
+    padding: 22px 20px; position:relative;
+  }
+  .tab-btn:hover{ color: var(--ink); }
+  .tab-btn:focus-visible{ outline:2px solid var(--burgundy); outline-offset:-2px; }
+  .tab-btn[aria-selected="true"]{ color: var(--burgundy); }
+  .tab-btn[aria-selected="true"]::after{
+    content:""; position:absolute; left:16px; right:16px; bottom:-1px; height:2px; background: var(--burgundy);
+  }
+  @media (max-width: 560px){ .tab-btn{ padding: 16px 12px; font-size:11px; } }
+
+  /* ---------- Panels ---------- */
+  .panel{ display:none; padding: 56px 0 90px; animation: fadeIn .3s ease; }
+  .panel.active{ display:block; }
+  @keyframes fadeIn{ from{ opacity:0; } to{ opacity:1; } }
+  @media (prefers-reduced-motion: reduce){ .panel{ animation:none; } }
+
+  .panel-num{ font-family:'Space Grotesk',sans-serif; font-size:12px; color: var(--burgundy); letter-spacing:0.1em; margin-bottom:16px; }
+  .panel h2{ font-size:30px; font-weight:600; margin-bottom:20px; }
+  .panel p{ margin:0 0 14px; }
+  .panel p.muted{ color: var(--ink-soft); font-size:15px; }
+  .venue-name{ font-size:19px; font-weight:600; margin-bottom:4px; font-family:'Space Grotesk',sans-serif; }
+  .tag{
+    display:inline-block; font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.08em;
+    text-transform:uppercase; color: var(--burgundy); border:1px solid var(--burgundy); padding:4px 12px; margin-top:8px;
+  }
+
+  /* ---------- Form ---------- */
+  form{ margin-top:8px; }
+  .row{ display:flex; gap:18px; }
+  .row .field{ flex:1; }
+  .field{ margin-bottom:24px; }
+  label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:0.08em;
+    text-transform:uppercase; color: var(--ink-soft); margin-bottom:9px;
+  }
+  label .opt{ text-transform:none; letter-spacing:0; color:#9aa0a6; }
+  input, select, textarea{
+    width:100%; border:none; border-bottom:1.5px solid var(--line); background:transparent;
+    font-family:'Inter', sans-serif; font-size:16px; color: var(--ink); padding:9px 2px;
+    transition: border-color .2s ease;
+  }
+  input:focus, select:focus, textarea:focus{ outline:none; border-bottom-color: var(--burgundy); }
+  input:focus-visible, select:focus-visible, textarea:focus-visible{ outline:2px solid var(--burgundy); outline-offset:3px; }
+  textarea{ resize:vertical; min-height:66px; }
+  select{ appearance:none; -webkit-appearance:none; cursor:pointer; }
+
+  .submit-btn{
+    margin-top:10px; border:1px solid var(--burgundy); background: var(--burgundy); color:#fff;
+    font-family:'Space Grotesk', sans-serif; font-size:13px; font-weight:600; letter-spacing:0.08em;
+    text-transform:uppercase; padding:15px 30px; cursor:pointer; width:100%;
+    transition: background .2s ease, color .2s ease;
+  }
+  .submit-btn:hover{ background: var(--burgundy-deep); border-color: var(--burgundy-deep); }
+  .submit-btn:focus-visible{ outline:2px solid var(--burgundy); outline-offset:3px; }
+  .submit-btn:disabled{ opacity:.5; cursor:default; }
+
+  .form-msg{ margin-top:16px; font-size:14px; display:none; }
+  .form-msg.ok{ display:block; color: var(--burgundy); }
+  .form-msg.err{ display:block; color:#A33; }
+  .required-note{ font-size:12px; color:#9aa0a6; margin-top:-10px; margin-bottom:26px; }
+
+  /* ---------- Footer ---------- */
+  footer{ border-top:1px solid var(--line); padding: 40px 0 50px; text-align:center; }
+  footer p{ color: var(--ink-soft); font-size:14px; margin:0; }
+</style>
+</head>
+<body>
+
+<nav class="tabs" role="tablist" aria-label="Bröllopsinformation">
+  <button class="tab-btn" role="tab" id="tab-hem" aria-controls="panel-hem" aria-selected="true" data-panel="hem">Hem</button>
+  <button class="tab-btn" role="tab" id="tab-plats" aria-controls="panel-plats" aria-selected="false" tabindex="-1" data-panel="plats">Plats</button>
+  <button class="tab-btn" role="tab" id="tab-tid" aria-controls="panel-tid" aria-selected="false" tabindex="-1" data-panel="tid">Tid</button>
+  <button class="tab-btn" role="tab" id="tab-meny" aria-controls="panel-meny" aria-selected="false" tabindex="-1" data-panel="meny">Meny</button>
+  <button class="tab-btn" role="tab" id="tab-kladkod" aria-controls="panel-kladkod" aria-selected="false" tabindex="-1" data-panel="kladkod">Klädkod</button>
+  <button class="tab-btn" role="tab" id="tab-osa" aria-controls="panel-osa" aria-selected="false" tabindex="-1" data-panel="osa">OSA</button>
+</nav>
+
+<div class="blue-wrap">
+<div class="container">
+
+  <div id="panel-hem" class="panel active hero" role="tabpanel" aria-labelledby="tab-hem">
+    <p class="eyebrow">Vi gifter oss</p>
+    <img src="benn-jasmin-namn.png" alt="Benn &amp; Jasmin" class="handwritten-names">
+    <p class="hero-meta">17.07.2027 <span class="dot">•</span> Nydalasjön <span class="dot">•</span> Umeå</p>
+  </div>
+
+
+  <div id="panel-plats" class="panel" role="tabpanel" aria-labelledby="tab-plats" hidden>
+    <p class="panel-num">01 — Plats</p>
+    <h2>Var vi firar</h2>
+    <p class="venue-name">Nydalasjön</p>
+    <p class="muted">Nydalasjön 155, 907 55 Umeå</p>
+    <p><a href="https://www.google.com/maps/search/?api=1&query=Nydalasj%C3%B6n%20155%2C%20907%2055%20Ume%C3%A5" target="_blank" rel="noopener">Visa på karta →</a></p>
+  </div>
+
+  <div id="panel-tid" class="panel" role="tabpanel" aria-labelledby="tab-tid" hidden>
+    <p class="panel-num">02 — Tid</p>
+    <h2>Dagens tider</h2>
+    <p>Reception från klockan <strong>15:00</strong>.</p>
+    <span class="tag">Bekräftat</span>
+    <p class="muted" style="margin-top:18px;">Ytterligare tider under dagen läggs upp här om det tillkommer.</p>
+  </div>
+
+  <div id="panel-meny" class="panel" role="tabpanel" aria-labelledby="tab-meny" hidden>
+    <p class="panel-num">03 — Meny</p>
+    <h2>Vad vi äter</h2>
+    <p class="muted">Menyn för kvällen håller på att sättas ihop.</p>
+    <span class="tag">Uppdateras senare</span>
+  </div>
+
+  <div id="panel-kladkod" class="panel" role="tabpanel" aria-labelledby="tab-kladkod" hidden>
+    <p class="panel-num">04 — Klädkod</p>
+    <h2>Vad ni kan ha på er</h2>
+    <p>Klä dig i det du känner dig fin och uppklädd, men ändå bekväm i.</p>
+  </div>
+
+  <div id="panel-osa" class="panel" role="tabpanel" aria-labelledby="tab-osa" hidden>
+    <p class="panel-num">05 — OSA</p>
+    <h2>Meddela att ni kommer</h2>
+    <p class="muted">Fyll i formuläret nedan senast <em>datum meddelas senare</em> så att vi vet att ni kommer.</p>
+
+    <form id="rsvpForm" name="rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="form-name" value="rsvp">
+      <p style="position:absolute; left:-9999px;" aria-hidden="true">
+        <label>Lämna detta fält tomt: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+      </p>
+
+      <div class="row">
+        <div class="field">
+          <label for="firstName">Förnamn <span aria-hidden="true">*</span></label>
+          <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label for="lastName">Efternamn <span aria-hidden="true">*</span></label>
+          <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="children">Antal medföljande barn <span aria-hidden="true">*</span></label>
+        <select id="children" name="children" required>
+          <option value="" disabled selected>Välj antal</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="email">E-postadress <span aria-hidden="true">*</span></label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="phone">Telefonnummer <span aria-hidden="true">*</span></label>
+          <input type="tel" id="phone" name="phone" required autocomplete="tel">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="allergies">Allergier / specialkost <span class="opt">(valfritt)</span></label>
+        <textarea id="allergies" name="allergies" placeholder="T.ex. glutenfritt, laktosfritt, vegetarisk..."></textarea>
+      </div>
+
+      <p class="required-note">* obligatoriska fält</p>
+
+      <button type="submit" class="submit-btn" id="submitBtn">Skicka OSA</button>
+      <div class="form-msg" id="formMsg" role="status"></div>
+    </form>
+  </div>
+
+</div>
+
+<footer>
+  <p>Vi ser fram emot att fira med er — Benn &amp; Jasmin</p>
+</footer>
+
+</div>
+
+<script>
+  // ---- Tabs ----
+  const tabs = Array.from(document.querySelectorAll('.tab-btn'));
+  const panels = Array.from(document.querySelectorAll('.panel'));
+
+  function activateTab(tab){
+    tabs.forEach(t => {
+      const selected = t === tab;
+      t.setAttribute('aria-selected', selected ? 'true' : 'false');
+      t.tabIndex = selected ? 0 : -1;
+    });
+    panels.forEach(p => {
+      const match = p.id === 'panel-' + tab.dataset.panel;
+      p.classList.toggle('active', match);
+      if(match){ p.removeAttribute('hidden'); } else { p.setAttribute('hidden',''); }
+    });
+  }
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => activateTab(tab));
+    tab.addEventListener('keydown', (e) => {
+      let idx = i;
+      if(e.key === 'ArrowRight'){ idx = (i + 1) % tabs.length; }
+      else if(e.key === 'ArrowLeft'){ idx = (i - 1 + tabs.length) % tabs.length; }
+      else { return; }
+      e.preventDefault();
+      tabs[idx].focus();
+      activateTab(tabs[idx]);
+    });
+  });
+
+  // ---- RSVP form (Netlify Forms) ----
+  const form = document.getElementById('rsvpForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const formMsg = document.getElementById('formMsg');
+
+  function encodeFormData(data){
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&');
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    formMsg.className = 'form-msg';
+    formMsg.textContent = '';
+
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const children = document.getElementById('children').value;
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const allergies = document.getElementById('allergies').value.trim();
+
+    if(!firstName || !lastName || children === '' || !email || !phone){
+      formMsg.classList.add('err');
+      formMsg.textContent = 'Fyll i alla obligatoriska fält innan du skickar.';
+      return;
+    }
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if(!emailOk){
+      formMsg.classList.add('err');
+      formMsg.textContent = 'Ange en giltig e-postadress.';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Skickar...';
+
+    try{
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encodeFormData({
+          'form-name': 'rsvp',
+          firstName, lastName, children, email, phone, allergies
+        })
+      });
+      if(!response.ok){ throw new Error('Nätverksfel: ' + response.status); }
+      formMsg.classList.add('ok');
+      formMsg.textContent = 'Tack ' + firstName + '! Ditt OSA är mottaget.';
+      form.reset();
+    }catch(err){
+      formMsg.classList.add('err');
+      formMsg.textContent = 'Något gick fel och svaret kunde inte skickas. Försök gärna igen om en stund.';
+      console.error('RSVP submit error:', err);
+    }finally{
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Skicka OSA';
+    }
+  });
+</script>
+
+</body>
+</html>
