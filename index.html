@@ -170,6 +170,7 @@
   <button class="tab-btn" role="tab" id="tab-tid" aria-controls="panel-tid" aria-selected="false" tabindex="-1" data-panel="tid">Tid</button>
   <button class="tab-btn" role="tab" id="tab-meny" aria-controls="panel-meny" aria-selected="false" tabindex="-1" data-panel="meny">Meny</button>
   <button class="tab-btn" role="tab" id="tab-kladkod" aria-controls="panel-kladkod" aria-selected="false" tabindex="-1" data-panel="kladkod">Klädkod</button>
+  <button class="tab-btn" role="tab" id="tab-ovrigt" aria-controls="panel-ovrigt" aria-selected="false" tabindex="-1" data-panel="ovrigt">Övrig information</button>
   <button class="tab-btn" role="tab" id="tab-osa" aria-controls="panel-osa" aria-selected="false" tabindex="-1" data-panel="osa">OSA</button>
 </nav>
 
@@ -210,10 +211,28 @@
     <p>Klä dig i det du känner dig fin och uppklädd, men ändå bekväm i.</p>
   </div>
 
+  <div id="panel-ovrigt" class="panel" role="tabpanel" aria-labelledby="tab-ovrigt" hidden>
+    <p class="panel-num">Övrigt</p>
+    <h2>Bra att veta</h2>
+    <h3>Kuvertavgift</h3>
+    <p>
+      Det viktigaste för oss är att få fira vår dag med er. <br>
+      Därför önskar vi oss inga bröllopspresenter. <br>
+      Istället kommer vi ha en kuvertavgift på 500 kr per person, som är ett bidrag till kvällens middag. <br>
+      Kuvertavgiften swishas i samband med OSA, senast <em>2027-04-17</em> till +46722199704.
+    </p>
+    <h3>Resa och boende</h3>
+    <p>
+      Resa och boende ordnas på egen hand. <br>
+      Men hör gärna av er till oss om ni vill ha tips på boende, resvägar eller annat som kan vara bra att veta under helgen. <br>
+      Vi hjälper mer än gärna till!
+    </p>
+  </div>
+
   <div id="panel-osa" class="panel" role="tabpanel" aria-labelledby="tab-osa" hidden>
     <p class="panel-num">OSA</p>
     <h2>Meddela att ni kommer</h2>
-    <p class="muted">Fyll i formuläret nedan senast <em>2026-11-01</em>, så att vi vet om ni kommer.</p>
+    <p class="muted">Fyll i formuläret nedan senast <em>2027-04-17</em>, så att vi vet om ni kommer.</p>
 
     <form id="rsvpForm" name="rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
       <input type="hidden" name="form-name" value="rsvp">
